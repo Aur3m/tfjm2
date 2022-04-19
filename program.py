@@ -1,4 +1,4 @@
-from heapq import heappush, heappop
+import heapq
 
 def throw(positions,bird_char,bird_number,n):
     a,b = bird_char[bird_number]
