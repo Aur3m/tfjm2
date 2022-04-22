@@ -33,9 +33,8 @@ def special_bird(a,b,n):
     for i in range(n):
         foo.append(["L'oiseau spécial de paramètre a,b se trouve en position",i+1])
         for element in combinations(a,b,n,i):
-            if element not in foo:
-                foo.append(element)
-                foo.append([predecessors[''.join(str(element))]])
+             foo.append(element)
+             foo.append([predecessors[''.join(str(element))]])
     return foo
 
 a = int(input("entrez a [mettez 1 par défaut]"))
