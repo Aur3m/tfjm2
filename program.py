@@ -16,16 +16,19 @@ def throw(positions,bird_char,bird_number,n):
 def combinations(a,b,n,special_bird):
     bird_char = [(1, 1)] * n
     bird_char[special_bird] = (a, b)
-    final = [[1] * n]
     bird_positions_queue = queue.LifoQueue()
-    bird_positions_queue.put([1]*n)
-    while not bird_positions_queue.empty():
-        new_bird_positions = bird_positions_queue.get()
-        for bird_number in range(n):
-            potential_new_combination = throw(new_bird_positions,bird_char,bird_number,n)
-            if potential_new_combination not in final:
-                final.append(potential_new_combination.copy())
-                bird_positions_queue.put(potential_new_combination.copy())
+    final = []
+    for bird_at_one in range(n):
+        starting_position = [0]*n
+        starting_position[bird_at_one] = 1
+        bird_positions_queue.put(starting_position)
+        while not bird_positions_queue.empty():
+            new_bird_positions = bird_positions_queue.get()
+            for bird_number in range(n):
+                potential_new_combination = throw(new_bird_positions,bird_char,bird_number,n)
+                if potential_new_combination not in final:
+                    final.append(potential_new_combination.copy())
+                    bird_positions_queue.put(potential_new_combination.copy())
     return final
 
 def special_bird(a,b,n):
